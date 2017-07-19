@@ -1,7 +1,11 @@
 var request=require('request'),
+	express=require('express'),
+	parser=require('body-parser'),
 	geo=require('./geocode'),
 	yargs=require('yargs'),
-	forecast=require('./forecast');
+	forecast=require('./forecast'),
+	port=process.env.PORT || 3000;
+	app=express(),
 	arg=yargs.options({
 		a:{
 			demand:true,
@@ -30,3 +34,10 @@ var request=require('request'),
 		}
 		
 	});
+	app.get('/',function(req,res)
+	{
+		res.send("<h1>Welcome To Home Page.</h1>")
+	}) ;
+app.listen(port,function(){
+	console.log(`Server Started at ${port} Port`);
+});
